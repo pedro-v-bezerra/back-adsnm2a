@@ -1,15 +1,16 @@
 const readline = require("readline-sync");
+const Produto = require("./modelo");
 
 const produtos = [];
 
 function listar() {
-    produtos.forEach(produto => console.log(`${produto.nome}-${produto.preco}`))
+    produtos.forEach(produto => console.log(produto.toString()))
 }
 
 function criar() {
-    const nome = readline.question("Entre com o nome do produto: ")
-    const preco = readline.question("Entre com o preco do produto: ")
-    const novo = {nome, preco}
+    const nome = readline.question("Entre com o nome do produto: ");
+    const preco = readline.question("Entre com o preco do produto: ");
+    const novo = new Produto (nome, preco);
     produtos.push(novo);
 }
 
@@ -17,7 +18,7 @@ function buscar() {
     const nome = readline.question("Entre com o nome do produto: ")
     const busca = produtos.find(produto => produto.nome === nome)
     if (busca){
-        console.log(`${busca.nome}--${busca.preco}`)
+        console.log(busca.toString())
     }else{
         console.log(`'${nome}' não encontrado`)
     }
